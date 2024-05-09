@@ -19,18 +19,19 @@
         include "pessoasbanco.class.php";
 
         $p = new Pessoas_banco();
-
         
-        $nome=$_POST['nome'];
+        $nome = $_POST['nome'];
         $p->setNome($nome);
-        echo "Nome: ". $p->getNome();
-        $email=$_POST['email'];
+        $email = $_POST['email'];
         $p->setEmail($email);
-        $idade=$_POST['idade'];
+        $idade = $_POST['idade'];
         $p->setIdade($idade);
 
-
         $p->inserirPessoa();
+
+        echo $nome . " ";
+        echo $email . " ";
+        echo $idade . " ";
 ?>
 
 </body>

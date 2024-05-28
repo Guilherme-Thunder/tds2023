@@ -1,5 +1,6 @@
 <?php 
     include "viagem.class.php";
+    include "cadastroVeiculo.php";
 
     $v = new Viagem();
 
@@ -11,10 +12,14 @@
     $v->setKmInicial($kmInicial);
     $kmFinal = $_POST['kmFinal'];
     $v->setKmFinal($kmFinal);
-    $gasolinaTipo = $_POST['gasolinaTipo'];
-    $v->setGasolinaTipo($gasolinaTipo);
     $gasolinaLitro = $_POST['gasolinaLitro'];
     $v->setGasolinaLitro($gasolinaLitro);
+    $precoGasolina = $_POST['precoGasolina'];
+    $v->setPrecoGasolina($precoGasolina);
+    $gasolinaTipo = $_POST['gasolinaTipo'];
+    $v->setGasolinaTipo($gasolinaTipo);
+    /*$completoOTanque = $_POST['completoOTanque'];
+    $v->setIsCOmpleto($completoOTanque);*/
 
     $v->imprimir();
 

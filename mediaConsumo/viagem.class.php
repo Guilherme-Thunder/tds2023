@@ -61,11 +61,14 @@
                 return $this->gasolinaTipo;
             }
 
+
+            
             public function imprimir() {
 
                 $kmHodometro = $this->getKmFinal() - $this->getkmInicial();
                 $valorGasolina = $this->getGasolinaLitro() * $this->getPrecoGasolina();
                 $media = ($this->getkmFinal() - $this->getkmInicial()) / $this->getGasolinaLitro();
+
                 echo "<h1>Cadastro: </h1>";
                 echo "Marca: " . $this->getMarca() . "<br>";
                 echo "Modelo: " . $this->getModelo() . "<br>";

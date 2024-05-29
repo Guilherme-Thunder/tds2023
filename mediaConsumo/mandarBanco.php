@@ -20,48 +20,16 @@
     include "conexao.class.php";
     class cadastroVeiculo {
 
-        function inserirVeiculo() {
-            $database = new Conexao(); //nova instancia da conexao
-            $db = $database->getConnection(); //tenta conectar
-            
-            $sql = "INSERT INTO VALUES veiculo (marca, modelo, kmInicial, kmFinal)(:marca, :modelo, :kmInicial, :kmFinal)";
-            try {
-                $stmt = $db->prepare($sql);
 
-                $stmt->bindParam(':marca', $this->marca);
-                $stmt->bindParam(':modelo', $this->modelo);
-                $stmt->bindParam(':kmInicial', $this->kmInicial);
-                $stmt->bindParam(':kmFinal', $this->kmFinal);
-                $stmt->execute();
-                return true;
-            } catch(PDOExeption $e) { //if(erro==true) {echo $this->mensagem;}
-                echo "Erro ao inserir automóvel: " . $e->getMessage();
-                return false;
-            }
+        function inserirVeiculo() {
+            
         }
     }
 
     class infoAbastecimento {
 
         function mandarAbastecimento() {
-            $database = new Conexao(); //nova instancia da conexao
-            $db = $database->getConnection(); //tenta conectar
             
-            $sql = "INSERT INTO VALUES abastecimento (gasolinaTIpo, kmHodometro, precoGasolina, media, cheio)(:gasolinaTIpo, :kmHodometro, :precoGasolina, :media, :cheio)";
-            try {
-                $stmt = $db->prepare($sql);
-    
-                $stmt->bindParam(':gasolinaTipo', $this->gasolinaTipo);
-                $stmt->bindParam(':kmPercorridos', $this->kmPercorridos);
-                $stmt->bindParam(':precoGasolina', $this->precoGasolina);
-                $stmt->bindParam(':media', $this->media);
-                $stmt->bindParam(':cheio', $this->cheio);
-                $stmt->execute();
-                return true;
-            } catch(PDOExeption $e) { //if(erro==true) {echo $this->mensagem;}
-                echo "Erro ao inserir abastecimento: " . $e->getMessage();
-                return false;
-            }
         }
     }
 ?>

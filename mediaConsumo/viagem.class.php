@@ -10,7 +10,7 @@
     <?php
         class Viagem {
 
-            public $marca, $modelo, $kmInicial, $kmFinal, $gasolinaLitro, $gasolinaTipo, $media, $kmPercorridos, $precoGasolina;
+            public $marca, $modelo, $kmInicial, $kmFinal, $gasolinaLitro, $gasolinaTipo, $media, $kmPercorridos, $kmHodometro, $precoGasolina;
 
             public function setMarca($marca) {
                 $this->marca = $marca;
@@ -44,7 +44,7 @@
                 $this->kmHodometro = $kmHodometro;
             }
             public function getKmHodometro() {
-                return $this->kmHodometro
+                return $this->kmHodometro;
             }
 
             public function setGasolinaLitro($gasolinaLitro) {
@@ -81,7 +81,7 @@
                 echo "Modelo: " . $this->getModelo() . "<br>";
                 echo "Km Inicial: " . $this->getkmInicial() . "<br>";
                 echo "Km Final: " . $this->getKmFinal() . "<br>";
-                echo "Kms Hodometro: " . 
+                echo "Kms Hodometro: " . $this->getKmHodometro() . "<br>";
                 echo "Kms Percorridos: " . $kmPercorridos . "<br>";
                 echo "Litros: " . $this->getGasolinaLitro() . "<br>";
                 echo "Tipo da Gasosa: " . $this->getGasolinaTipo() . "<br>";
@@ -95,6 +95,47 @@
                     echo "Encheu o tanque: não<br>";
                 }
                 echo "Media: " . $media . "<br>";
+            }
+
+            public function mandarProBanco() {
+                //VEÍCULO
+                $database = new Conexao(); //nova instancia da conexao
+                $db = $database->getConnection(); //tenta conectar
+                
+                $sql = "INSERT INTO VALUES veiculo (marca, modelo, kmInicial, kmFinal)(:marca, :modelo, :kmInicial, :kmFinal)";
+                try {
+                    $stmt = $db->prepare($sql);
+
+                    $stmt->bindParam(':marca', $this->marca);
+                    $stmt->bindParam(':modelo', $this->modelo);
+                    $stmt->bindParam(':kmInicial', $this->kmInicial);
+                    $stmt->bindParam(':kmFinal', $this->kmFinal);
+                    $stmt->execute();
+                    return true;
+                } catch(PDOExeption $e) { //if(erro==true) {echo $this->mensagem;}
+                    echo "Erro ao inserir automóvel: " . $e->getMessage();
+                    return false;
+                }
+
+                //ABASTECIMENTO
+                $database = new Conexao(); //nova instancia da conexao
+                $db = $database->getConnection(); //tenta conectar
+                
+                $sql = "INSERT INTO VALUES abastecimento (gasolinaLitro, gasolinaTipo, kmHodometro, precoGasolina, media, cheio)(:gasolinaLitro, :gasolinaTipo, :kmHodometro, :precoGasolina, :media, :cheio)";
+                try {
+                    $stmt = $db->prepare($sql);
+        
+                    $stmt->bindParam(':gasolinaTipo', $this->gasolinaTipo);
+                    $stmt->bindParam(':kmPercorridos', $this->kmPercorridos);
+                    $stmt->bindParam(':precoGasolina', $this->precoGasolina);
+                    $stmt->bindParam(':media', $this->media);
+                    $stmt->bindParam(':cheio', $this->cheio);
+                    $stmt->execute();
+                    return true;
+                } catch(PDOExeption $e) { //if(erro==true) {echo $this->mensagem;}
+                    echo "Erro ao inserir abastecimento: " . $e->getMessage();
+                    return false;
+                }
             }
         }  
     ?>

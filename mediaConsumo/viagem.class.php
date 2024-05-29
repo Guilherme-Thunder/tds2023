@@ -10,7 +10,7 @@
     <?php
         class Viagem {
 
-            public $marca, $modelo, $kmInicial, $kmFinal, $gasolinaLitro, $gasolinaTipo, $media, $kmHodometro, $precoGasolina;
+            public $marca, $modelo, $kmInicial, $kmFinal, $gasolinaLitro, $gasolinaTipo, $media, $kmPercorridos, $precoGasolina;
 
             public function setMarca($marca) {
                 $this->marca = $marca;
@@ -40,6 +40,13 @@
                 return $this->kmFinal;
             }
 
+            public function setKmHodometro($kmHodometro) {
+                $this->kmHodometro = $kmHodometro;
+            }
+            public function getKmHodometro() {
+                return $this->kmHodometro
+            }
+
             public function setGasolinaLitro($gasolinaLitro) {
                 $this->gasolinaLitro = $gasolinaLitro;
             }
@@ -62,10 +69,10 @@
             }
 
 
-            
+
             public function imprimir() {
 
-                $kmHodometro = $this->getKmFinal() - $this->getkmInicial();
+                $kmPercorridos = $this->getKmFinal() - $this->getkmInicial();
                 $valorGasolina = $this->getGasolinaLitro() * $this->getPrecoGasolina();
                 $media = ($this->getkmFinal() - $this->getkmInicial()) / $this->getGasolinaLitro();
 
@@ -74,6 +81,8 @@
                 echo "Modelo: " . $this->getModelo() . "<br>";
                 echo "Km Inicial: " . $this->getkmInicial() . "<br>";
                 echo "Km Final: " . $this->getKmFinal() . "<br>";
+                echo "Kms Hodometro: " . 
+                echo "Kms Percorridos: " . $kmPercorridos . "<br>";
                 echo "Litros: " . $this->getGasolinaLitro() . "<br>";
                 echo "Tipo da Gasosa: " . $this->getGasolinaTipo() . "<br>";
                 echo "Preço da Gasolina: " . $this->getPrecoGasolina() . "<br>";

@@ -40,10 +40,10 @@
             }
         }
     }
-    
-    class cadastroVeiculo {
 
-        function inserirVeiculo() {
+    class infoAbastecimento {
+
+        function mandarAbastecimento() {
             $database = new Conexao(); //nova instancia da conexao
             $db = $database->getConnection(); //tenta conectar
             
@@ -51,10 +51,11 @@
             try {
                 $stmt = $db->prepare($sql);
     
-                $stmt->bindParam(':marca', $this->marca);
-                $stmt->bindParam(':modelo', $this->modelo);
-                $stmt->bindParam(':kmInicial', $this->kmInicial);
-                $stmt->bindParam(':kmFinal', $this->kmFinal);
+                $stmt->bindParam(':gasolinaTipo', $this->gasolinaTipo);
+                $stmt->bindParam(':kmPercorridos', $this->kmPercorridos);
+                $stmt->bindParam(':precoGasolina', $this->precoGasolina);
+                $stmt->bindParam(':media', $this->media);
+                $stmt->bindParam(':cheio', $this->cheio);
                 $stmt->execute();
                 return true;
             } catch(PDOExeption $e) { //if(erro==true) {echo $this->mensagem;}

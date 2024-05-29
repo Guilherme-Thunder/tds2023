@@ -1,6 +1,6 @@
 <?php 
     include "viagem.class.php";
-    include "cadastroVeiculo.php";
+    include "mandarBanco.php";
 
     $v = new Viagem();
 

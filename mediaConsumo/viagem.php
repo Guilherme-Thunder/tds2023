@@ -20,7 +20,15 @@
     $v->setGasolinaTipo($gasolinaTipo);
     /*$completoOTanque = $_POST['completoOTanque'];
     $v->setIsCOmpleto($completoOTanque);*/
+    $cheio = false;
 
     $v->imprimir();
-
+    if(isset($_POST['completoOTanque'])) {
+        $cheio = true;
+        echo "Encheu o tanque: sim<br>";
+    } else {
+        $cheio = false;
+        echo "Encheu o tanque: não<br>";
+    }
+    $v->mandarProBanco();
 ?>

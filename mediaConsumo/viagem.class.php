@@ -74,8 +74,7 @@
 
                 $kmPercorridos = $this->getKmFinal() - $this->getkmInicial();
                 $valorGasolina = $this->getGasolinaLitro() * $this->getPrecoGasolina();
-                $media = ($this->getkmFinal() - $this->getkmInicial()) / $this->getGasolinaLitro();
-
+                $media = ($kmPercorridos) / $this->getGasolinaLitro();
                 echo "<h1>Cadastro: </h1>";
                 echo "Marca: " . $this->getMarca() . "<br>";
                 echo "Modelo: " . $this->getModelo() . "<br>";
@@ -86,14 +85,6 @@
                 echo "Litros: " . $this->getGasolinaLitro() . "<br>";
                 echo "Tipo da Gasosa: " . $this->getGasolinaTipo() . "<br>";
                 echo "Preço da Gasolina: " . $this->getPrecoGasolina() . "<br>";
-                $cheio = false;
-                if(isset($_POST['completoOTanque'])) {
-                    $cheio = true;
-                    echo "Encheu o tanque: sim<br>";
-                } else {
-                    $cheio = false;
-                    echo "Encheu o tanque: não<br>";
-                }
                 echo "Media: " . $media . "<br>";
             }
 
@@ -102,7 +93,7 @@
                 $database = new Conexao(); //nova instancia da conexao
                 $db = $database->getConnection(); //tenta conectar
                 
-                $sql = "INSERT INTO VALUES veiculo (marca, modelo, kmInicial, kmFinal)(:marca, :modelo, :kmInicial, :kmFinal)";
+                $sql = "INSERT INTO veiculo (marca, modelo, kmInicial, kmFinal) VALUES (:marca, :modelo, :kmInicial, :kmFinal)";
                 try {
                     $stmt = $db->prepare($sql);
 
@@ -121,7 +112,7 @@
                 $database = new Conexao(); //nova instancia da conexao
                 $db = $database->getConnection(); //tenta conectar
                 
-                $sql = "INSERT INTO VALUES abastecimento (gasolinaLitro, gasolinaTipo, kmHodometro, precoGasolina, media, cheio)(:gasolinaLitro, :gasolinaTipo, :kmHodometro, :precoGasolina, :media, :cheio)";
+                $sql = "INSERT INTO abastecimento (gasolinaLitro, gasolinaTipo, kmHodometro, precoGasolina, media, cheio) VALUES (:gasolinaLitro, :gasolinaTipo, :kmHodometro, :precoGasolina, :media, :cheio)";
                 try {
                     $stmt = $db->prepare($sql);
         

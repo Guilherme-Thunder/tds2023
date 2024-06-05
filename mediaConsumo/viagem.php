@@ -1,6 +1,5 @@
 <?php 
     include "viagem.class.php";
-    include "mandarBanco.php";
 
     $v = new Viagem();
 
@@ -12,6 +11,8 @@
     $v->setKmInicial($kmInicial);
     $kmFinal = $_POST['kmFinal'];
     $v->setKmFinal($kmFinal);
+    $kmHodometro = $_POST['kmHodometro'];
+    $v->setKmHodometro($kmHodometro);
     $gasolinaLitro = $_POST['gasolinaLitro'];
     $v->setGasolinaLitro($gasolinaLitro);
     $precoGasolina = $_POST['precoGasolina'];
@@ -30,5 +31,6 @@
         $cheio = false;
         echo "Encheu o tanque: não<br>";
     }
-    $v->mandarProBanco();
+    $v->mandarVeiculo();
+    $v->mandarAbastecimento();
 ?>
